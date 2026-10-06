@@ -1,0 +1,16 @@
+{
+  "name": "webhook-relay",
+  "version": "1.0.0",
+  "description": "Recebe webhooks (Asaas, WhatsApp, GitHub...), valida a origem, guarda em SQLite e reenvia ao seu sistema com retentativas, idempotência e reprocessamento. Zero dependências.",
+  "type": "module",
+  "bin": { "webhook-relay": "./bin/webhook-relay.js" },
+  "exports": { ".": "./src/index.js" },
+  "files": ["src", "bin"],
+  "scripts": {
+    "start": "node bin/webhook-relay.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=22.13" },
+  "keywords": ["webhook", "relay", "queue", "retry", "idempotency", "sqlite", "asaas", "whatsapp"],
+  "license": "MIT"
+}

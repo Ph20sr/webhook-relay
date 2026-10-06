@@ -1,0 +1,24 @@
+{
+  "port": 8787,
+  "database": "relay.db",
+  "maxAttempts": 8,
+  "adminToken": "env:RELAY_ADMIN_TOKEN",
+  "routes": {
+    "asaas": {
+      "target": "https://api.seusistema.com.br/webhooks/asaas",
+      "verify": { "type": "token", "header": "asaas-access-token", "secret": "env:ASAAS_WEBHOOK_TOKEN" },
+      "idempotency": { "jsonField": "id" },
+      "signingSecret": "env:RELAY_SIGNING_SECRET"
+    },
+    "whatsapp": {
+      "target": "https://api.seusistema.com.br/webhooks/whatsapp",
+      "verify": { "type": "hmac-sha256", "header": "x-hub-signature-256", "secret": "env:WA_APP_SECRET" },
+      "signingSecret": "env:RELAY_SIGNING_SECRET"
+    },
+    "github": {
+      "target": "https://ci.seusistema.com.br/hooks/github",
+      "verify": { "type": "hmac-sha256", "header": "x-hub-signature-256", "secret": "env:GITHUB_WEBHOOK_SECRET" },
+      "idempotency": { "header": "x-github-delivery" }
+    }
+  }
+}
